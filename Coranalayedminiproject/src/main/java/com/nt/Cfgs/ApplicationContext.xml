@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://localhost:3306/lit"></property>
+<property name="username" value="root"></property>
+<property name="password" value="sinu"></property>
+</bean>
+<bean id="cdao" class="com.nt.Dao.CoranaDaoimpl">
+<constructor-arg ref="drds"></constructor-arg>
+</bean>
+<bean id="cservice" class="com.nt.Service.CoranaServiceimpl">
+<constructor-arg ref="cdao"></constructor-arg>
+</bean>
+<bean id="controller" class="com.nt.Controller.MainController">
+<constructor-arg ref="cservice"></constructor-arg>
+</bean>
+
+</beans>
