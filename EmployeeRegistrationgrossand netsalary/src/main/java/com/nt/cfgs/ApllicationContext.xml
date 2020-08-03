@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://localhost:3306/lit"></property>
+<property name="username" value="root"></property>
+<property name="password" value="sinu"></property>
+</bean>
+<bean id="dadt" class="com.nt.Dao.EmployeeDaoimpl">
+<constructor-arg ref="drds"></constructor-arg>
+</bean>
+<bean id="service1" class="com.nt.Service.EmployeeServiceimpl"> 
+<constructor-arg ref="dadt"></constructor-arg>
+</bean>
+<bean id="controller1" class="com.nt.Controller.MainController">
+<constructor-arg ref="service1"></constructor-arg>
+</bean>
+</beans>
