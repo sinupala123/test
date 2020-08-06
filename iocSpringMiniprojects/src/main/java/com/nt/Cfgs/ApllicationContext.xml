@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="drds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<property name="username" value="root"></property>
+<property name="password" value="sinu"></property>
+<property name="connectionProperties">
+<props>
+<prop key="user">system</prop>
+<prop key="password">sinu</prop>
+</props>
+</property>
+</bean>
+<bean id="hickaridb" class="com.zaxxer.hikari.HikariDataSource" parent="drds">
+<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/lit"></property>
+<property name="connectionTimeout" value="2000"></property>
+<property name="minimumIdle" value="10"></property>
+</bean>
+<bean id="dadt" class="com.nt.Dao.CustomerDaoimpl">
+<constructor-arg ref="hickaridb"></constructor-arg>
+</bean>
+<bean id="service" class="com.nt.Service.Customerserviceimpl"> 
+<constructor-arg ref="dadt"></constructor-arg>
+</bean>
+<bean id="controller" class="com.nt.Controller.MainController">
+<constructor-arg ref="service"></constructor-arg>
+</bean>
+</beans>
