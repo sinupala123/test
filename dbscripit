@@ -1,0 +1,7 @@
+create table cornatable
+(cno int auto_increment,
+cname varchar(90),
+cadd varchar(90),
+pamt varchar(90),
+fbill varchar(90),
+primary key(cno));
