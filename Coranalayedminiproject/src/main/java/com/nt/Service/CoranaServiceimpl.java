@@ -28,7 +28,7 @@ public final class CoranaServiceimpl implements CoranaService
 		count=dao.insert(bo);
 		if (count==1)
 		{
-			return "not generated  amount"+dto.getPamt()  +"day"+dto.getDay() +"bill amounnt"+billamount;
+			return "not generated  amount";
 		}
 		else
 		{
